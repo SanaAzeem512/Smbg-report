@@ -11,7 +11,8 @@ const SMBGChart: React.FC = () => {
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: "40%",
+        columnWidth: "35%",
+        borderRadius: 3,
       },
     },
     dataLabels: {
@@ -19,46 +20,64 @@ const SMBGChart: React.FC = () => {
     },
     stroke: {
       show: true,
-      width: 2,
-      colors: ["transparent"],
+      width: 1,
+      colors: ["#fff"],
     },
     xaxis: {
-      categories: ["6", "12", "8"], // time (hours)
+      categories: [
+        "12", "2", "4", "6", "8", "10",
+        "12", "2", "4", "6", "8", "10", "12"
+      ],
       title: {
         text: "Time (hour)",
+        style: { fontWeight: 600 },
+      },
+      labels: {
+        style: { fontSize: "13px", fontWeight: 500 },
       },
     },
     yaxis: {
       title: {
         text: "Blood glucose (mg/dl)",
+        style: { fontWeight: 600 },
       },
       min: 60,
-      max: 200,
-      tickAmount: 7,
+      max: 200, // ✅ extended to 200
+      tickAmount: 14, // ✅ gives 60 → 200 in steps of 10
+      labels: {
+        formatter: (val) => `${val}`,
+        style: { fontSize: "13px", fontWeight: 500 },
+      },
+    },
+    grid: {
+      borderColor: "#e0e0e0",
+      strokeDashArray: 3,
     },
     legend: {
       position: "top",
       horizontalAlign: "right",
+      fontSize: "14px",
+      markers: { radius: 4 },
     },
-    colors: ["#4B0082", "#FF7F50"], // pre-meal purple, post-meal orange
+    colors: ["#5B5FAD", "#F28C3D"], // blue & orange
   };
 
-  // Dummy data (replace with API data if needed)
+  // Dummy data for 13 time points
   const series = [
     {
       name: "Pre-meal SMBG",
-      data: [130, 130, 140],
+      data: [130, 128, 125, 132, 138, 140, 135, 130, 128, 132, 136, 138, 140],
     },
     {
       name: "Post-meal SMBG",
-      data: [155, 145, 160],
+      data: [155, 150, 148, 158, 160, 165, 162, 155, 150, 158, 162, 165, 160],
     },
   ];
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
-      <div className="w-full max-w-4xl p-6 bg-white shadow-lg rounded-2xl">
-        <h2 className="text-xl font-semibold mb-4 text-center">
+      <div className="w-full max-w-5xl p-6 bg-white shadow-lg rounded-2xl">
+        <h2 className="text-lg font-semibold mb-4 text-center">
           SMBG & Meal Attributes
         </h2>
         <Chart options={options} series={series} type="bar" height={400} />
@@ -68,3 +87,8 @@ const SMBGChart: React.FC = () => {
 };
 
 export default SMBGChart;
+
+
+
+
+

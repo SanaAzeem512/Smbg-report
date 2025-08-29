@@ -35,7 +35,8 @@ const EnergyIntakeChart: React.FC = () => {
       position: "top",
       horizontalAlign: "right",
     },
-    colors: ["#c4b5fd", "#bbf7d0", "#60a5fa"], // Carb, Protein, Fat
+    // ✅ Updated colors
+    colors: ["#C6C6FF", "#bbf7d0", "#5FC0F8"], // Carb, Protein, Fat
     grid: {
       borderColor: "#e5e7eb",
     },
@@ -67,3 +68,4 @@ const EnergyIntakeChart: React.FC = () => {
 };
 
 export default EnergyIntakeChart;
+

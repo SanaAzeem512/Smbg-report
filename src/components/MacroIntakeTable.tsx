@@ -19,10 +19,13 @@ const MacroTable: React.FC<MacroTableProps> = ({ month, rows }) => {
   return (
     <div className="flex flex-col items-center">
       <h3 className="text-lg font-bold mb-3">{month}</h3>
-      <table className="table-auto border-collapse border border-gray-200 rounded-md shadow-sm">
-        <thead className="bg-gray-100">
+      <table className="table-auto border-collapse border border-gray-200 rounded-md shadow-sm w-full">
+        {/* ✅ Updated header color */}
+        <thead className="bg-[#F0F7FA]">
           <tr>
-            <th className="border border-gray-200 px-4 py-2 text-left">Nutrient</th>
+            <th className="border border-gray-200 px-4 py-2 text-left">
+              Nutrient
+            </th>
             <th className="border border-gray-200 px-4 py-2">Breakfast</th>
             <th className="border border-gray-200 px-4 py-2">Lunch</th>
             <th className="border border-gray-200 px-4 py-2">Dinner</th>
@@ -31,24 +34,31 @@ const MacroTable: React.FC<MacroTableProps> = ({ month, rows }) => {
         <tbody>
           {rows.map((row, idx) => (
             <tr key={idx} className="text-center">
-              <td className="border border-gray-200 px-4 py-2 text-left font-medium">
+              {/* ✅ First column also highlighted */}
+              <td className="border border-gray-200 px-4 py-2 text-left font-medium bg-[#F0F7FA]">
                 {row.nutrient} ({row.unit})
               </td>
               <td
-                className={`border border-gray-200 px-4 py-2 ${
-                  row.values.breakfast.includes("red") ? "text-red-600" : "text-green-600"
+                className={`border border-gray-200 px-4 py-2 bg-white ${
+                  row.values.breakfast.includes("red")
+                    ? "text-red-600"
+                    : "text-green-600"
                 }`}
                 dangerouslySetInnerHTML={{ __html: row.values.breakfast }}
               />
               <td
-                className={`border border-gray-200 px-4 py-2 ${
-                  row.values.lunch.includes("red") ? "text-red-600" : "text-green-600"
+                className={`border border-gray-200 px-4 py-2 bg-white ${
+                  row.values.lunch.includes("red")
+                    ? "text-red-600"
+                    : "text-green-600"
                 }`}
                 dangerouslySetInnerHTML={{ __html: row.values.lunch }}
               />
               <td
-                className={`border border-gray-200 px-4 py-2 ${
-                  row.values.dinner.includes("red") ? "text-red-600" : "text-green-600"
+                className={`border border-gray-200 px-4 py-2 bg-white ${
+                  row.values.dinner.includes("red")
+                    ? "text-red-600"
+                    : "text-green-600"
                 }`}
                 dangerouslySetInnerHTML={{ __html: row.values.dinner }}
               />
@@ -154,3 +164,7 @@ const MacroIntakeTable: React.FC = () => {
 };
 
 export default MacroIntakeTable;
+
+
+
+

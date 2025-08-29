@@ -8,15 +8,29 @@ const MealDashboard2: React.FC = () => {
       type: "line",
       toolbar: { show: false },
     },
-    stroke: { curve: "smooth", width: 2 },
+    stroke: { width: 3 },
+    colors: ["#0470AF"],
+    markers: {
+      size: 5,
+      colors: ["#fff"],
+      strokeColors: "#3B82F6",
+      strokeWidth: 2,
+    },
+    grid: {
+      borderColor: "#E5E7EB",
+      row: { colors: ["transparent"], opacity: 0.1 },
+    },
     xaxis: {
       categories: ["W1", "W2", "W3", "W4"],
+      labels: { style: { colors: "#6B7280" } },
     },
     yaxis: {
       min: 0,
       max: 50,
       tickAmount: 5,
+      labels: { style: { colors: "#6B7280" } },
     },
+    dataLabels: { enabled: false },
   };
 
   const lineSeries = [
@@ -26,59 +40,65 @@ const MealDashboard2: React.FC = () => {
     },
   ];
 
-  // Radial Chart Options Factory
+  // Radial Chart Options
   const radialOptions = (color: string): ApexCharts.ApexOptions => ({
-    chart: {
-      type: "radialBar",
-      sparkline: { enabled: true },
-    },
+    chart: { type: "radialBar", sparkline: { enabled: true } },
     plotOptions: {
       radialBar: {
-        hollow: { size: "65%" },
+        hollow: { size: "50%" },
+   
+        track: { background: "#E5E7EB" },
         dataLabels: {
           show: true,
           name: { show: false },
           value: {
-            fontSize: "20px",
+            fontSize: "22px",
             fontWeight: "bold",
+            color: color,
           },
         },
       },
     },
     colors: [color],
+      stroke: {
+    lineCap: "round",
+  },
   });
 
   return (
-    <div className="p-6 bg-white rounded-2xl shadow-md">
+    <div className="p-8 bg-white rounded-2xl shadow-md">
       {/* Title */}
-      <h2 className="text-2xl font-bold text-blue-700 flex items-center mb-6">
-        🍴 Meal Statistics
+      <h2 className="text-2xl font-bold text-gray-900 flex items-center mb-6">
+        <span className="mr-2">🍴</span> Meal Statistics
       </h2>
 
-      {/* Stats + Chart Section */}
+      {/* Stats + Chart */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Left Stats */}
-        <div className="space-y-2 text-gray-700">
+        {/* Stats */}
+        <div className="space-y-2 text-gray-600">
           <p>
             Number of major meals uploaded:{" "}
-            <span className="font-semibold">21</span>
+            <span className="font-semibold text-gray-900">21</span>
           </p>
           <p>
-            Number of snacks uploaded: <span className="font-semibold">9</span>
+            Number of snacks uploaded:{" "}
+            <span className="font-semibold text-gray-900">9</span>
           </p>
           <p>
             Number of Breakfast uploaded:{" "}
-            <span className="font-semibold">8</span>
+            <span className="font-semibold text-gray-900">8</span>
           </p>
           <p>
-            Number of Lunch uploaded: <span className="font-semibold">10</span>
+            Number of Lunch uploaded:{" "}
+            <span className="font-semibold text-gray-900">10</span>
           </p>
           <p>
-            Number of high carb meal: <span className="font-semibold">9</span>
+            Number of high carb meal:{" "}
+            <span className="font-semibold text-gray-900">9</span>
           </p>
           <p>
             Number of low protein meal:{" "}
-            <span className="font-semibold">8</span>
+            <span className="font-semibold text-gray-900">8</span>
           </p>
         </div>
 
@@ -96,34 +116,39 @@ const MealDashboard2: React.FC = () => {
         </div>
       </div>
 
-      {/* Circular Score Charts */}
-      <div className="flex flex-col md:flex-row justify-around mt-8 gap-6">
+      {/* Radial Score Charts */}
+      <div className="flex flex-col md:flex-row justify-around mt-10 gap-6">
         <div className="text-center">
           <Chart
-            options={radialOptions("#3b82f6")}
+            options={radialOptions("#3B82F6")}
             series={[58]}
             type="radialBar"
-            height={150}
+            height={160}
           />
-          <p className="mt-2 font-semibold text-gray-700">Carb Score</p>
+          <p className="mt-2 font-bold text-gray-800">Carb Score</p>
+          <p className="text-sm text-gray-500">% of meals within carb budget</p>
         </div>
         <div className="text-center">
           <Chart
-            options={radialOptions("#ef4444")}
+            options={radialOptions("#EF4444")}
             series={[82]}
             type="radialBar"
-            height={150}
+            height={160}
           />
-          <p className="mt-2 font-semibold text-gray-700">Protein Score</p>
+          <p className="mt-2 font-bold text-gray-800">Protein Score</p>
+          <p className="text-sm text-gray-500">
+            % of meals within protein budget
+          </p>
         </div>
         <div className="text-center">
           <Chart
-            options={radialOptions("#22c55e")}
+            options={radialOptions("#22C55E")}
             series={[82]}
             type="radialBar"
-            height={150}
+            height={160}
           />
-          <p className="mt-2 font-semibold text-gray-700">Fiber Score</p>
+          <p className="mt-2 font-bold text-gray-800">Fiber Score</p>
+          <p className="text-sm text-gray-500">% of meals within fiber budget</p>
         </div>
       </div>
     </div>
@@ -131,3 +156,6 @@ const MealDashboard2: React.FC = () => {
 };
 
 export default MealDashboard2;
+
+
+

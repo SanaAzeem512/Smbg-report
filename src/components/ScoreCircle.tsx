@@ -4,15 +4,17 @@ import Chart from "react-apexcharts";
 interface ScoreCircleProps {
   label: string;
   value: number;
-  color: string;
+  color: string;       // progress color
+  background?: string; // track background color
 }
 
-const ScoreCircle: React.FC<ScoreCircleProps> = ({ label, value, color }) => {
+const ScoreCircle: React.FC<ScoreCircleProps> = ({ label, value, color, background = "#DCD7D7" }) => {
   const options: ApexCharts.ApexOptions = {
     chart: { type: "radialBar", sparkline: { enabled: true } },
     plotOptions: {
       radialBar: {
-        hollow: { size: "65%" },
+        hollow: { size: "50%" },
+        track: { background },
         dataLabels: {
           value: {
             formatter: () => `${value}%`,
@@ -24,6 +26,9 @@ const ScoreCircle: React.FC<ScoreCircleProps> = ({ label, value, color }) => {
       },
     },
     colors: [color],
+    stroke: {
+    lineCap: "round",
+  },
   };
 
   return (
@@ -35,3 +40,5 @@ const ScoreCircle: React.FC<ScoreCircleProps> = ({ label, value, color }) => {
 };
 
 export default ScoreCircle;
+
+

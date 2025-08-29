@@ -14,35 +14,41 @@ const BloodGlucoseTable: React.FC = () => {
     "Attributes",
     "Pre breakfast",
     "Post breakfast",
-    "Pre lunch",
+    "Pre Lunch",
     "Post lunch",
     "Pre dinner",
     "Post dinner",
     "Overall",
   ];
 
+  const headerColors = [
+    "bg-[#0470AF] text-white", // Attributes
+    "bg-[#74BD61] text-white", // Pre breakfast
+    "bg-[#74BD61] text-white", // Post breakfast
+    "bg-[#7F82BC] text-white", // Pre lunch
+    "bg-[#7F82BC] text-white", // Post lunch
+    "bg-[#D08FDA] text-white", // Pre dinner
+    "bg-[#D08FDA] text-white", // Post dinner
+    "bg-[#0470AF] text-white", // Overall
+  ];
+
   return (
-    <div className="h-36 bg-red-500">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti facere nobis, itaque voluptatum molestias culpa animi accusamus excepturi non perferendis odit, aspernatur beatae consectetur! Doloribus nemo ratione tenetur suscipit quod?
-       </div>
-  );
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
-      <div className="bg-white rounded-2xl shadow-xl p-6 max-w-6xl w-full">
+    <div className="min-h-screen flex items-center justify-center bg-white p-6">
+      <div className="bg-white rounded-lg p-6 max-w-6xl w-full">
         {/* Title */}
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-blue-700">
-          <span className="text-3xl">💧</span> Blood Glucose Statistics
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-black">
+          <span className="text-3xl">🩸</span> Blood glucose statistics
         </h2>
 
         {/* Table */}
         <div className="overflow-x-auto rounded-lg">
-          <table className="border border-gray-500 border-collapse w-full text-sm text-left">
-            <thead className="bg-blue-600 text-white">
+          <table className="w-full border-separate border-spacing-[2px]  border border-gray-200 text-sm text-left rounded-lg">
+            <thead>
               <tr>
                 {headers.map((header, i) => (
                   <th
                     key={i}
-                    className="px-6 py-3 border border-gray-500 font-semibold text-center"
+                    className={`px-6 py-3 text-center font-semibold border border-gray-200 ${headerColors[i]}`}
                   >
                     {header}
                   </th>
@@ -51,16 +57,15 @@ const BloodGlucoseTable: React.FC = () => {
             </thead>
             <tbody>
               {data.map((row, i) => (
-                <tr
-                  key={i}
-                  className={`${
-                    i % 2 === 0 ? "bg-gray-50" : "bg-white"
-                  } hover:bg-blue-50 transition`}
-                >
+                <tr key={i} className="hover:bg-gray-50 transition">
                   {row.map((cell, j) => (
                     <td
                       key={j}
-                      className="px-6 py-3 border border-gray-500 text-center"
+                      className={`px-6 py-3 border border-gray-200 text-center text-gray-700
+                        ${j === 0 ? "bg-[#F0F7FA] font-medium text-left" : ""} 
+                        ${j === 1 || j === 2 ? "bg-[#F1F9F3]" : ""} 
+                        ${j === 3 || j === 4 ? "bg-[#F3F3FF]" : ""} 
+                        ${j === 5 || j === 6 ? "bg-[#FAEEFB]" : ""}`}
                     >
                       {cell}
                     </td>
@@ -76,6 +81,15 @@ const BloodGlucoseTable: React.FC = () => {
 };
 
 export default BloodGlucoseTable;
+
+
+
+
+
+
+
+
+
 
 
 

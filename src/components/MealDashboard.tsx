@@ -26,9 +26,9 @@ const MealDashboard: React.FC = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-6">
       <div className="grid grid-cols-4 gap-6 w-full max-w-6xl">
         {/* Left Side - Stats */}
-        <div className="col-span-1">
+        <div className="col-span-2">
           <div className="bg-white p-4 rounded-xl shadow-md w-full">
-            <h2 className="text-lg font-semibold mb-3">Meal Statistics</h2>
+            <h1 className="text-lg font-semibold mb-3">Meal Statistics</h1>
             <ul className="text-gray-700 text-sm space-y-2">
               <li>
                 Number of meals uploaded:{" "}
@@ -47,7 +47,7 @@ const MealDashboard: React.FC = () => {
         </div>
 
         {/* Middle - Scores */}
-        <div className="col-span-1 flex flex-col space-y-4 items-center">
+        <div className="col-span-2 flex flex-row justify-center gap-10">
           <ScoreCircle
             label="Carb Score"
             value={scores.carbScore}
@@ -61,7 +61,7 @@ const MealDashboard: React.FC = () => {
         </div>
 
         {/* Right Side - Charts */}
-        <div className="col-span-2 grid grid-cols-3 gap-4">
+        <div className="flex justify-between items-center w-full col-span-4 gap-x-4">
           <MealChart mealType="Breakfast" mealData={mealData.Breakfast} />
           <MealChart mealType="Lunch" mealData={mealData.Lunch} />
           <MealChart mealType="Dinner" mealData={mealData.Dinner} />
