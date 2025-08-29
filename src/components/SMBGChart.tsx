@@ -57,7 +57,6 @@ const SMBGChart: React.FC = () => {
       position: "top",
       horizontalAlign: "right",
       fontSize: "14px",
-      markers: { radius: 4 },
     },
     colors: ["#5B5FAD", "#F28C3D"], // blue & orange
   };

@@ -1,5 +1,4 @@
 import React from "react";
-import MealStats from "./MealStats";
 import ScoreCircle from "./ScoreCircle";
 import MealChart from "./MealChart";
 
